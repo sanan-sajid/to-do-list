@@ -1,23 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
 
 function App() {
+  const [toDoList, setToDoList] = useState([]);
+  const [inputValue, setInputValue] = useState("");
+  const handleChange = (event) => {
+    setInputValue(event.target.value);
+    console.log(inputValue);
+  };
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter" && inputValue !== "") {
+      addTask();
+    }
+  };
+  const addTask = () => {
+    if (inputValue !== "") {
+      setToDoList([...toDoList, inputValue]);
+    }
+  };
+
+  const handleDelete = (index) => {
+    const newToDoList = [...toDoList];
+    newToDoList.splice(index, 1);
+    setToDoList(newToDoList);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="addTask">
+        <input
+          type="text"
+          value={inputValue}
+          onChange={handleChange}
+          onKeyPress={handleKeyPress}
+        />
+        <button onClick={addTask}>Add Task</button>
+      </div>
+
+      <div className="list">
+        {toDoList.map((task, key) => {
+          return (
+            <div>
+              <h1 key={key}>{task}</h1>
+              <button onClick={() => handleDelete(key)}>X</button>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
