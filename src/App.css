@@ -1,7 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@700&family=Merriweather&family=Montserrat&family=Sacramento&display=swap');
+
 .App {
   text-align: center;
+ 
 }
-
+.task{
+  color: #EAEAEA;
+  font-family: 'Kanit', sans-serif;
+  padding-right: 60px;
+  margin-top: 3px;
+  text-align: center;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +44,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+button{
+  width: 124px;
+  height: 45px;
 }
